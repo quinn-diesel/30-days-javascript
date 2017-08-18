@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key="83" src="sounds/hihat.wav"></audio>
+  <audio data-key="68" src="sounds/kick.wav"></audio>
+  <audio data-key="70" src="sounds/openhat.wav"></audio>
+  <audio data-key="71" src="sounds/boom.wav"></audio>
+  <audio data-key="72" src="sounds/ride.wav"></audio>
+  <audio data-key="74" src="sounds/snare.wav"></audio>
+  <audio data-key="75" src="sounds/tom.wav"></audio>
+  <audio data-key="76" src="sounds/tink.wav"></audio>
+
+<script>
+
+  window.addEventListener('keydown', function(e){
+
+  // remember to use the back ticks and the query selector
+  // attribute selector data-key= variable
+  // remember there are quotes and back-ticks to be using
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    // have to make sure i am selecting the right part in this element
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    // console.log(audio)
+    // console.log(key)
+    // if no audio then stop the function from running all together
+    if(!audio) return;
+     // want to rewind to the start of the element
+    audio.currentTime = 0;
+    // audio won't play until the end of the loop
+    audio.play();
+
+
+    //change the css as we are playing
+    // vanilla javascript way to adding the classList
+    key.classList.add('playing');
+
+
+    // alternative way to write
+
+    // function playSound(e) {
+    //   const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    //   const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    //   if(!audio) return;
+    //   audio.currentTime = 0;
+    //   audio.play();
+    //   key.classList.add('playing');
+    // };
+    //
+    // window.addEventListener('keydown', playSound)// put this at the bottom of the script
+
+  });
+
+    function removeTransition(e){
+      // if the propertyname of the even is not 'transition' then return out of the event
+      if(e.propertyName !== 'transform' ) return; // skip it if it's not a transform
+      // console.log(e.propertyName)
+
+      // cheap way of this = the key
+      // console.log(this) // is whatever got called against it
+      this.classList.remove('playing');
+
+    };
+
+    // transition clicks
+
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+
+
+</script>
+
+
+</body>
+</html>
