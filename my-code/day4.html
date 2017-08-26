@@ -32,7 +32,7 @@
 
       ///// remember reduce, filter, map just loop over everything in the array!!!///
 
-    // Array.prototype.filter()
+    //1.  Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
     // trial
@@ -58,7 +58,7 @@
     console.table(fifteentwo)
 
 
-    // Array.prototype.map()
+    //2.  Array.prototype.map()
     // remember it turns a new array at the other end
     // map will always return the same number that you give it
     // this is like a factory when you putting in raw materials and spitting new things back out
@@ -121,7 +121,7 @@
     console.table(reordered);
 
 
-    // Array.prototype.reduce()
+    // 4. Array.prototype.reduce()
     // 4. How many years did all the inventors live?
 
     // reduce will allow you to build something on each element of the array
@@ -138,27 +138,72 @@
 
     const totalYears = inventors.reduce((total, inventor) => {
       return total + (inventor.passed - inventor.year)
-
+      // this will reset the score to 0
     }, 0);
 
-    // this will reset the score to 0
 
     console.log(totalYears)
 
 
     // 5. Sort the inventors by years lived
 
-    const oldest
+    const oldest = inventors.sort(function (a, b){
+      const lastGuy = a.passed - a.year;
+      const nextGuy = b.passed - b.year;
+
+
+      return lastGuy > nextGuy ? -1 : 1;
+      // Rule when you see an if then else statement you can use a ternary operator
+      // if ( lastGuy > nextGuy ){
+      //   return -1;
+      // } else {
+      //   return 1;
+      // }
+    })
+
+    console.table(oldest)
 
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+    // have to comment out so the rest of the code can be run now.
+
+    // const category = document.querySelector('.mw-category');
+    //
+    // // this will return a nodelist that will be unable to be mapped. must return it into an array
+    // // const links = category.querySelectorAll('a');
+    //
+    // //can do
+    // // const links = Array.from(category.querySelectorAll('a'));
+    // // with es6 you can use a spread --> ...
+    // // so
+    // const links = [...category.querySelectorAll('a')];
+    //
+    //
+    // var detwo = links.map(function(link){
+    //   return link.textContent;
+    // });
+    //
+    // console.log(detwo)
+    //
+    // const de = links
+    //                 .map(link => link.textContent);
+    //                 .filter( streetName => streetName.includes('de'));
+    //
+    //
+    // // closing note to remember:
+    // // when looking at the hash rocket in es6 it is going make a function (name) the name then return whatever comes after.
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    // geuss
+
+    const alpha = people.sort(function (lastOne, nextOne){
+      console.log
+    })
 
 
 
