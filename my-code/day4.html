@@ -201,15 +201,49 @@
 
     // geuss
 
-    const alpha = people.sort(function (lastOne, nextOne){
-      console.log
-    })
+    const alpha = people.sort(function(lastOne, nextOne){
+      // const parts = lastOne.split(', ');
+      const [alast, afirst] = lastOne.split(', ');
+      const [blast, bfirst] = lastOne.split(', ');
+      // console.log (last, first)
+      // ternary operator ? return -1 otherwise make it a 1 so it can move up and down the array we are dealing with
+      return alast > blast ? -1 : 1;
+      // return afirst > bfirst ? -1 : 1;
+    });
 
+    console.log(alpha);
 
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    const transportation = data.reduce(function (object, item){
+      if(!object[item]){
+        object[item] = 0;
+      }
+      //make sure to increment over what i am finding out
+      object[item]++;
+
+      console.log(item);
+      return object;
+
+    }, {});
+
+    // lesson to remember if (something happens) { then this is what i want you to do}
+
+
+    // revision
+
+    // here are the main things i have to remember with data
+    // filter - choose what you want to select
+    // sort - figure out how you want to sory what you need to
+    // map - iterate through what you want to see come from the object
+    // reduce - change the data into a new object that you want to change
+
+    // these are doing to be useful when going over the JSON and manipulating data. make sure to keep at it.
+
+    
 
   </script>
 </body>
