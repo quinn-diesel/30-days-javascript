@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+<body>
+<canvas id="draw" width="800" height="800"></canvas>
+<script>
+
+const canvas = document.querySelector('#draw');
+
+// this is making the context that is going to set what the canvas is doing. remember grab the canvas element and use getContext, like a filter to draw out what you want from it.
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+ctx.strokeStlye = '#BADA55';
+ctx.lineJoin = 'round'; // the end of the line that is squared or rounded off. there are lots of different options
+ctx.lineCap = 'round';
+ctx.lineWidth = 100;
+ctx.globalCompositeOperation = 'multiply'; // these are different blend modes that you can play with when you are doing things
+
+let isDrawing = false; // when the click down on the element. this is flag where you will register the click for the up and down click
+let lastX = 0;
+let lastY = 0;
+let hue = 0;
+let direction = true;
+
+function draw(e){
+  if(!isDrawing) return; // stop the function from running when they are not mousedown
+  console.log(e);
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+  ctx.lineWidth = hue;
+  ctx.beginPath();
+  // start form
+  ctx.moveTo(lastX, lastY);
+  //go to
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke(); // nothing will be seen on the page until stroke is called
+  [lastX, lastY] = [e.offsetX, e.offsetY]; // this is called a structuring array
+  // lastX = e.offsetX;
+  // lastY = e.offsetY;
+  hue ++;
+  if (hue >= 360 ){
+    hue = 0;
+  }
+
+  ctx.lineWidth++;
+  if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
+    direction = !direction;
+  }
+  if (direction){
+    ctx.lineWidth ++;
+  } else {
+    ctx.lineWidth --;
+  }
+}
+
+// this is going to put us where we want to go rather than starting at the 0, 0 coordinates
+canvas.addEventListener('mousedown', (e) => {
+  isDrawing = true;
+  [lastX, lastY] = [e.offsetX, e.offsetY];
+});
+
+canvas.addEventListener('mousemove', draw); // listening for the mousemove event on the canvas, vanilla js is listening to what is going on
+// canvas.addEventListener('mousedown', () =>  isDrawing = true);
+canvas.addEventListener('mouseup', () =>  isDrawing = false);
+canvas.addEventListener('mouseout', () =>  isDrawing = false); // think about all the different ways the mouse can interact with the page.
+
+
+
+
+</script>
+
+<style>
+  html, body {
+    margin:0;
+  }
+</style>
+
+</body>
+</html>
