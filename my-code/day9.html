@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    //the first one is the break on
+      // then attribute modifications. this will show you exactly where the code you are working on is breaking
+
+    // Regular
+    console.log('hello');
+
+    // Interpolated
+    // this will interpolate the secodn argument that you are saying
+    // interpolation definition: where you are replacing the string of something with the literal term you are using later.
+    // quick and dirty way to change variables around like helloo '{name}' and have the name entered in later
+    console.log('Hello I am a %s string!', 'another area')
+
+    //es6
+    console.log(``); // back ticks
+
+    // Styled
+    console.log('%c I am some great text', 'font-size:50px; background:red; ')
+
+    // warning!
+    console.warn('OH NOOO!!');
+    // this will give a stack trace error to say where this is
+
+    // Error :|
+    console.error('SHIT IT BROKE!');
+
+    // Info
+    console.info('Insert a fun fact here');
+
+    // Testing
+    const p = documnet.querySelector('p');
+
+    console.assert(p.classlist.contains('ouch'), 'That is wrong!');
+
+    // this will throw the message if the first condition is false.
+
+    // clearing
+    console.clear();
+
+    // Viewing DOM Elements
+    console.dir(p);
+    // allow you to open the element it to inspect it.
+    // you will see all the different methods that it is going to show you
+
+    // Grouping together
+    console.clear();
+
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+        console.log(`This is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+      console.groudEnd(`${dog.name}`);
+    })
+
+    // this allows you to see how the different consoles are looking for and see all the info that is for that person
+
+    // counting
+    // how many times you use a specific node, element etc
+    // you have to be specific with what is going on
+
+    // timing
+    // want to see how long something takes to render
+    console.timer('fetching data');
+    fetch('githubwebsite here')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log('data');
+      })
+
+    //table
+    // take an array of objects and assuming that everything has the same properties but you can always drag and drop differen things
+
+
+  </script>
+</body>
+</html>

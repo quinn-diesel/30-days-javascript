@@ -36,7 +36,7 @@ function draw(e){
   ctx.beginPath();
   // start form
   ctx.moveTo(lastX, lastY);
-  //go to
+  //go <to></to>
   ctx.lineTo(e.offsetX, e.offsetY);
   ctx.stroke(); // nothing will be seen on the page until stroke is called
   [lastX, lastY] = [e.offsetX, e.offsetY]; // this is called a structuring array
@@ -68,8 +68,6 @@ canvas.addEventListener('mousemove', draw); // listening for the mousemove event
 // canvas.addEventListener('mousedown', () =>  isDrawing = true);
 canvas.addEventListener('mouseup', () =>  isDrawing = false);
 canvas.addEventListener('mouseout', () =>  isDrawing = false); // think about all the different ways the mouse can interact with the page.
-
-
 
 
 </script>
