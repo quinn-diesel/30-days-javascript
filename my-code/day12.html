@@ -6,7 +6,33 @@
   <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
 </head>
 <body>
+
+<p>This is how key trackers can be used over the website.</p>
+<p>The konami code, this is how you used to get unlimited lives in Mario</p>
+
 <script>
+
+const pressed = [];
+const secretCode = 'quinntorious'
+
+
+window.addEventListener('keyup', (e) => {
+  // this is just logging the different keys that are being typed into the website
+  console.log(e.key);
+  // this is just a key logger and will record everything the person is doing
+  pressed.push(e.key);
+  // we want to count everything from the back
+  // negative at the beginning will start everything
+  pressed.splice(-secretCode.length -1, pressed.length - secretCode.length);
+  // check that everything is going to equal the secret code that people are going to typw in
+  if(pressed.join('').includes(secretCode)){
+    console.log('YOU ARE THE GRAND MASTER!');
+    // this ill just randomly add unicorns to the website as everything pops up
+    cornify_add();
+  }
+  console.log(pressed);
+})
+
 </script>
 </body>
 </html>
